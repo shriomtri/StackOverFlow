@@ -1,18 +1,15 @@
 package com.stackflow.stackoverflow.view.activities;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.stackflow.stackoverflow.R;
-import com.stackflow.stackoverflow.databinding.ActivityHomeBinding;
 import com.stackflow.stackoverflow.service.model.Question;
+import com.stackflow.stackoverflow.databinding.ActivityHomeBinding;
 import com.stackflow.stackoverflow.view.adapters.QuestionTitleAdapter;
 import com.stackflow.stackoverflow.viewmodel.HomeViewModel;
 

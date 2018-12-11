@@ -17,12 +17,16 @@ android {
 
         release {
             buildConfigField "String","BASE_URL",'"https://api.stackexchange.com/2.2/"'
+            buildConfigField "String","KEY",'"WKjzkzOIAmvYJx)BrFCYDw(("'
+            buildConfigField "String","CLIENT_ID",'"14056"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
             buildConfigField "String","BASE_URL",'"https://api.stackexchange.com/2.2/"'
+            buildConfigField "String","KEY",'"WKjzkzOIAmvYJx)BrFCYDw(("'
+            buildConfigField "String","CLIENT_ID",'"14056"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

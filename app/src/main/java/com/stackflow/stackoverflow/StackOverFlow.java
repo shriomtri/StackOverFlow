@@ -3,6 +3,7 @@ package com.stackflow.stackoverflow;
 import android.app.Application;
 
 import com.stackflow.stackoverflow.service.net.DataRepository;
+import com.stackflow.stackoverflow.util.SharedPrefUtil;
 
 public class StackOverFlow extends Application {
 
@@ -14,6 +15,8 @@ public class StackOverFlow extends Application {
     public void onCreate() {
         super.onCreate();
 
+        SharedPrefUtil.set(this);
+        SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_KEY,BuildConfig.KEY);
         DataRepository.instance();
 
     }
