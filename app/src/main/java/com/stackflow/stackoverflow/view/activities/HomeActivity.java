@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.stackflow.stackoverflow.R;
@@ -18,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     ActivityHomeBinding binding;
     private HomeViewModel viewModel;
@@ -38,17 +40,36 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean isHomeAsUpEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isToolbarRequired() {
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
     private void getTrendingQuestions() {
 
+        showProgressDialog(this);
+
         Map<String, String> map = new HashMap<>();
-        map.put("page","1");
-        map.put("pagesize","10");
-        map.put("order","desc");
-        map.put("sort","activity");
-        map.put("tagged","android");
-        map.put("site","stackoverflow");
+        map.put("page", "1");
+        map.put("pagesize", "10");
+        map.put("order", "desc");
+        map.put("sort", "activity");
+        map.put("tagged", "android");
+        map.put("site", "stackoverflow");
 
         viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
+
+            cancelProgressDialog();
 
             if (questionResponseList != null && questionResponseList.getItems() != null) {
 
