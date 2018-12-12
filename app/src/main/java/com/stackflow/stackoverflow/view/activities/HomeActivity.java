@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.stackflow.stackoverflow.R;
 import com.stackflow.stackoverflow.service.model.Question;
 import com.stackflow.stackoverflow.databinding.ActivityHomeBinding;
+import com.stackflow.stackoverflow.util.Constants;
 import com.stackflow.stackoverflow.util.SharedPrefUtil;
 import com.stackflow.stackoverflow.view.adapters.QuestionTitleAdapter;
 import com.stackflow.stackoverflow.viewmodel.HomeViewModel;
@@ -43,13 +44,13 @@ public class HomeActivity extends BaseActivity {
         showProgressDialog(this);
 
         Map<String, String> map = new HashMap<>();
-        map.put("page", "1");
-        map.put("pagesize", "10");
-        map.put("order", "desc");
-        map.put("sort", "activity");
-        map.put("tagged", "android");
-        map.put("site", "stackoverflow");
-        map.put("key",SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+        map.put(Constants.QueryParam.PAGE, "1");
+        map.put(Constants.QueryParam.PAGE_SIZE, "10");
+        map.put(Constants.QueryParam.ORDER, "desc");
+        map.put(Constants.QueryParam.SORT, "activity");
+        map.put(Constants.QueryParam.TAGGED, "android");
+        map.put(Constants.QueryParam.SITE, "stackoverflow");
+        map.put(Constants.QueryParam.KEY,SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
 
         viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
 

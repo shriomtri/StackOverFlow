@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.stackflow.stackoverflow.BuildConfig;
 import com.stackflow.stackoverflow.R;
 import com.stackflow.stackoverflow.databinding.ActivityLoginBinding;
+import com.stackflow.stackoverflow.util.Constants;
 import com.stackflow.stackoverflow.util.SharedPrefUtil;
 
 import androidx.annotation.Nullable;
@@ -33,7 +34,7 @@ public class LoginActivity extends BaseActivity {
             cancelProgressDialog();
         }
 
-        //check of ACCESS_TOKEN nullablity
+        //check of ACCESS_TOKEN nullability
         if (!TextUtils.isEmpty(SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_TOKEN))) {
             gotHomeActivity();
         }
@@ -47,9 +48,9 @@ public class LoginActivity extends BaseActivity {
                     .authority("stackoverflow.com")
                     .appendPath("oauth")
                     .appendPath("dialog")
-                    .appendQueryParameter("client_id",BuildConfig.CLIENT_ID)
-                    .appendQueryParameter("scope", "no_expiry")
-                    .appendQueryParameter("redirect_uri","https://stackexchange.com/oauth/login_success");
+                    .appendQueryParameter(Constants.QueryParam.CLIENT_ID ,BuildConfig.CLIENT_ID)
+                    .appendQueryParameter(Constants.QueryParam.SCOPE, "no_expiry")
+                    .appendQueryParameter(Constants.QueryParam.REDIRECT_URI,"https://stackexchange.com/oauth/login_success");
 
             String authUrl = builder.build().toString();
 
