@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.stackflow.stackoverflow.R;
 import com.stackflow.stackoverflow.service.model.Question;
 import com.stackflow.stackoverflow.databinding.ActivityHomeBinding;
+import com.stackflow.stackoverflow.util.SharedPrefUtil;
 import com.stackflow.stackoverflow.view.adapters.QuestionTitleAdapter;
 import com.stackflow.stackoverflow.viewmodel.HomeViewModel;
 
@@ -37,6 +38,31 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    private void getTrendingQuestions() {
+
+        showProgressDialog(this);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("page", "1");
+        map.put("pagesize", "10");
+        map.put("order", "desc");
+        map.put("sort", "activity");
+        map.put("tagged", "android");
+        map.put("site", "stackoverflow");
+        map.put("key",SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+
+        viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
+
+            cancelProgressDialog();
+
+            if (questionResponseList != null && questionResponseList.getItems() != null) {
+                List<Question> questionList = questionResponseList.getItems();
+                titleAdapter.swapData(questionList);
+            }
+        });
+    }
+
+
     @Override
     public boolean isHomeAsUpEnabled() {
         return false;
@@ -52,29 +78,4 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    private void getTrendingQuestions() {
-
-        showProgressDialog(this);
-
-        Map<String, String> map = new HashMap<>();
-        map.put("page", "1");
-        map.put("pagesize", "10");
-        map.put("order", "desc");
-        map.put("sort", "activity");
-        map.put("tagged", "android");
-        map.put("site", "stackoverflow");
-
-        viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
-
-            cancelProgressDialog();
-
-            if (questionResponseList != null && questionResponseList.getItems() != null) {
-
-                List<Question> questionList = questionResponseList.getItems();
-                titleAdapter.swapData(questionList);
-
-            }
-        });
-
-    }
 }

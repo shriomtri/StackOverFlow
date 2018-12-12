@@ -23,15 +23,17 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
-        //check of uri data
+        //check of uri data coming from redirect uri
         Uri uri = getIntent().getData();
         if (uri != null && uri.toString().contains("access_token")) {
-            String token = uri.getQueryParameter("access_token");
-            SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_TOKEN, token);
+            String redirect_uri = uri.toString();
+            String access_token = redirect_uri.substring(redirect_uri.indexOf("=")+1);
+            SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_TOKEN, access_token);
             gotHomeActivity();
             cancelProgressDialog();
         }
 
+        //check of ACCESS_TOKEN nullablity
         if (!TextUtils.isEmpty(SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_TOKEN))) {
             gotHomeActivity();
         }
