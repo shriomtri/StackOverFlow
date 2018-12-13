@@ -17,6 +17,7 @@ public class StackOverFlow extends Application {
 
         SharedPrefUtil.set(this);
         SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_KEY,BuildConfig.KEY);
+        SharedPrefUtil.instance().set(SharedPrefUtil.CLIENT_ID,BuildConfig.CLIENT_ID);
         DataRepository.instance();
 
     }

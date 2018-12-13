@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.service.model.ResponseList;
+import com.stackflow.app.service.model.User;
 
 import java.util.Map;
 
@@ -40,6 +41,24 @@ public class DataRepository {
 
             @Override
             public void onFailure(Call<ResponseList<Question>> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ResponseList<User>> getUserInfo(Map<String,String> map) {
+
+        MutableLiveData<ResponseList<User>> data = new MutableLiveData<>();
+        Call<ResponseList<User>> call = dataService.getUserInfo(map);
+        call.enqueue(new Callback<ResponseList<User>>() {
+            @Override
+            public void onResponse(Call<ResponseList<User>> call, Response<ResponseList<User>> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseList<User>> call, Throwable t) {
                 data.setValue(null);
             }
         });

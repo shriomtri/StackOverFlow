@@ -14,6 +14,7 @@ public class Constants {
         String SCOPE = "scope";
         String REDIRECT_URI = "redirect_uri";
         String CLIENT_ID = "client_id";
+        String FILTER = "filter";
     }
 
 }

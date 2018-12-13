@@ -41,6 +41,7 @@
             android:label="@string/trending">
 
         </activity>
+        <activity android:name=".view.activities.ProfileActivity" />
 
     </application>
 

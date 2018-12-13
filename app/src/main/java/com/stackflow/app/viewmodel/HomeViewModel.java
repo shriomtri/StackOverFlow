@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class HomeViewModel extends ViewModel {
 
-    private DataRepository dataRepository;
+    private final DataRepository dataRepository;
 
     public HomeViewModel() {
         dataRepository = DataRepository.instance();
