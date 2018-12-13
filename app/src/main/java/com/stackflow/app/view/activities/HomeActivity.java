@@ -1,4 +1,4 @@
-package com.stackflow.stackoverflow.view.activities;
+package com.stackflow.app.view.activities;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
@@ -7,13 +7,13 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.stackflow.stackoverflow.R;
-import com.stackflow.stackoverflow.service.model.Question;
-import com.stackflow.stackoverflow.databinding.ActivityHomeBinding;
-import com.stackflow.stackoverflow.util.Constants;
-import com.stackflow.stackoverflow.util.SharedPrefUtil;
-import com.stackflow.stackoverflow.view.adapters.QuestionTitleAdapter;
-import com.stackflow.stackoverflow.viewmodel.HomeViewModel;
+import com.stackflow.app.R;
+import com.stackflow.app.service.model.Question;
+import com.stackflow.app.util.Constants;
+import com.stackflow.app.util.SharedPrefUtil;
+import com.stackflow.app.view.adapters.QuestionTitleAdapter;
+import com.stackflow.app.viewmodel.HomeViewModel;
+import com.stackflow.app.databinding.ActivityHomeBinding;
 
 import java.util.HashMap;
 import java.util.List;

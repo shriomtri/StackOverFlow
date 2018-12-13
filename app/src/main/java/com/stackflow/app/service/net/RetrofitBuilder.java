@@ -1,7 +1,7 @@
-package com.stackflow.stackoverflow.service.net;
+package com.stackflow.app.service.net;
 
 
-import com.stackflow.stackoverflow.BuildConfig;
+import com.stackflow.app.BuildConfig;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -1,4 +1,4 @@
-package com.stackflow.stackoverflow.view.adapters;
+package com.stackflow.app.view.adapters;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.stackflow.stackoverflow.R;
-import com.stackflow.stackoverflow.service.model.Question;
+import com.stackflow.app.R;
+import com.stackflow.app.service.model.Question;
 
 import java.util.List;
 

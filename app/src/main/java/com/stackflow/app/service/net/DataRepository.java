@@ -1,10 +1,10 @@
-package com.stackflow.stackoverflow.service.net;
+package com.stackflow.app.service.net;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.stackflow.stackoverflow.service.model.Question;
-import com.stackflow.stackoverflow.service.model.ResponseList;
+import com.stackflow.app.service.model.Question;
+import com.stackflow.app.service.model.ResponseList;
 
 import java.util.Map;
 

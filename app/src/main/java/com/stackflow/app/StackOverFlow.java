@@ -1,9 +1,9 @@
-package com.stackflow.stackoverflow;
+package com.stackflow.app;
 
 import android.app.Application;
 
-import com.stackflow.stackoverflow.service.net.DataRepository;
-import com.stackflow.stackoverflow.util.SharedPrefUtil;
+import com.stackflow.app.service.net.DataRepository;
+import com.stackflow.app.util.SharedPrefUtil;
 
 public class StackOverFlow extends Application {
 

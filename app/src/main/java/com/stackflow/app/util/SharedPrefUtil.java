@@ -1,4 +1,4 @@
-package com.stackflow.stackoverflow.util;
+package com.stackflow.app.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

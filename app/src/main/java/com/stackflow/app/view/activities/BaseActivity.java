@@ -1,11 +1,11 @@
-package com.stackflow.stackoverflow.view.activities;
+package com.stackflow.app.view.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.stackflow.stackoverflow.R;
+import com.stackflow.app.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

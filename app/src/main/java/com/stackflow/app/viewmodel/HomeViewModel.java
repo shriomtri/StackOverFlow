@@ -1,14 +1,12 @@
-package com.stackflow.stackoverflow.viewmodel;
+package com.stackflow.app.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-import androidx.annotation.Nullable;
 
-import com.stackflow.stackoverflow.service.model.Question;
-import com.stackflow.stackoverflow.service.model.ResponseList;
-import com.stackflow.stackoverflow.service.net.DataRepository;
+import com.stackflow.app.service.model.Question;
+import com.stackflow.app.service.model.ResponseList;
+import com.stackflow.app.service.net.DataRepository;
 
 import java.util.Map;
 

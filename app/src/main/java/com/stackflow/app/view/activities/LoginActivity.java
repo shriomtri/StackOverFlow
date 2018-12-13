@@ -1,15 +1,15 @@
-package com.stackflow.stackoverflow.view.activities;
+package com.stackflow.app.view.activities;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.stackflow.stackoverflow.BuildConfig;
-import com.stackflow.stackoverflow.R;
-import com.stackflow.stackoverflow.databinding.ActivityLoginBinding;
-import com.stackflow.stackoverflow.util.Constants;
-import com.stackflow.stackoverflow.util.SharedPrefUtil;
+import com.stackflow.app.BuildConfig;
+import com.stackflow.app.R;
+import com.stackflow.app.databinding.ActivityLoginBinding;
+import com.stackflow.app.util.Constants;
+import com.stackflow.app.util.SharedPrefUtil;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;

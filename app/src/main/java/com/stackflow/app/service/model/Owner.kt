@@ -1,4 +1,4 @@
-package com.stackflow.stackoverflow.service.model
+package com.stackflow.app.service.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
