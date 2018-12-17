@@ -7,12 +7,17 @@ import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class SharedPrefUtil {
     private static SharedPrefUtil sharedPrefUtil = null;
 
     private SharedPreferences sharedPreferences;
     public static final String PREF_NAME = "stackoverflow";
+    public static final String USER_INTEREST = "interest";
     public static final String FIRST_TIME = "firstTime";
     public static final String ACCESS_TOKEN = "accessToken";
     public static final String ACCESS_KEY = "accessKey";
@@ -73,4 +78,18 @@ public class SharedPrefUtil {
         editor.apply();
     }
 
+    public void setInterest(String key, List<String> interestList) {
+        Set<String> stringSet = new HashSet<>();
+        for (int i = 0, size = interestList.size(); i < size; i++) {
+            stringSet.add(interestList.get(i));
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet(key, stringSet);
+        editor.apply();
+    }
+
+    public List<String> getInterest(String key) {
+        Set<String> interestSet = sharedPreferences.getStringSet(SharedPrefUtil.USER_INTEREST, null);
+        return new ArrayList<>(interestSet);
+    }
 }
