@@ -28,7 +28,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
-                tools:text="SUBMIT" />
+                android:text="SUBMIT" />
 
         </LinearLayout>
 

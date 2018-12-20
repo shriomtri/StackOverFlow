@@ -22,7 +22,8 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
     private Context context;
     private List<PopularTag> tagList;
     private List<String> selected = new ArrayList<>(4);
-    InterestClickListener interestClickListener;
+    private InterestClickListener interestClickListener;
+    private StringBuilder builder = new StringBuilder();
 
     private int interestCount = 0;
 
@@ -44,7 +45,8 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
     public void onBindViewHolder(@NonNull ViewModel holder, int position) {
 
         PopularTag popularTag = tagList.get(position);
-        holder.interestName.setText(popularTag.getName());
+        String interestName = String.valueOf(popularTag.getName().charAt(0)).toUpperCase() + popularTag.getName().substring(1);
+        holder.interestName.setText(interestName);
         holder.interestCB.setChecked(false);
         holder.itemView.setOnClickListener(v -> {
             if(holder.interestCB.isChecked()){

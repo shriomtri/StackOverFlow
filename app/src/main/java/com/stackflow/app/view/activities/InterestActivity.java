@@ -60,6 +60,8 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         queryMap.put(Constants.QueryParam.ORDER, "desc");
         queryMap.put(Constants.QueryParam.SORT, "popular");
         queryMap.put(Constants.QueryParam.SITE, "stackoverflow");
+        queryMap.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+
         viewModel.getPopularTag(queryMap).observe(this, popularTagResponseList -> {
             cancelProgressDialog();
             if(popularTagResponseList != null && popularTagResponseList.getItems().size() > 0){
