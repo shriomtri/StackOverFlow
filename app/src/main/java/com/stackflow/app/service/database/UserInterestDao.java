@@ -14,14 +14,14 @@ import androidx.room.Update;
 @Dao
 public interface UserInterestDao {
 
-    @Query("SELECT userInterest FROM UserInterest")
-    LiveData<List<String>> getUserInterest();
+    @Query("SELECT * FROM UserInterest")
+    LiveData<List<UserInterest>> getUserInterest();
 
     @Query("SELECT interestTags FROM UserInterest WHERE userInterest = :userInterest")
-    LiveData<List<String>> getInterestTag(String userInterest);
+    LiveData<String> getInterestTag(String userInterest);
 
     @Insert
-    void insertUserInterests(UserInterest interests);
+    void insertUserInterests(List<UserInterest> interests);
 
     @Update
     void updateUserInterest(UserInterest userInterest);

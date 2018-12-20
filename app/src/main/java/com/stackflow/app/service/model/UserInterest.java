@@ -18,21 +18,18 @@ public class UserInterest {
     @NonNull
     private String interestTags;
 
+    public UserInterest(@NonNull String userInterest, @NonNull String interestTags) {
+        this.userInterest = userInterest;
+        this.interestTags = interestTags;
+    }
+
     @NonNull
     public String getUserInterest() {
         return userInterest;
     }
 
-    public void setUserInterest(@NonNull String userInterest) {
-        this.userInterest = userInterest;
-    }
-
     @NonNull
     public String getInterestTags() {
         return interestTags;
-    }
-
-    public void setInterestTags(@NonNull String interestTags) {
-        this.interestTags = interestTags;
     }
 }

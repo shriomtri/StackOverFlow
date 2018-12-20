@@ -1,9 +1,11 @@
 package com.stackflow.app.view.activities;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -61,6 +63,13 @@ public class HomeActivity extends BaseActivity {
                 titleAdapter.swapData(questionList);
             }
         });
+
+        //testing purpose
+        viewModel.getUserInterest().observe(this, interests -> {
+            Log.d("mark1",interests.get(0).getUserInterest()+" "+interests.get(1).getUserInterest());
+            Log.d("mark1","Size "+String.valueOf(interests.size()));
+        });
+
     }
 
 

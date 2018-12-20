@@ -20,7 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_NAME = "stackflow.db";
 
-    public abstract UserInterestDao userInterestDao();
+    public abstract UserInterestDao getUserInterestDao();
 
 
     static final Migration MIGRATION_1_2 = new Migration(1,2) {
