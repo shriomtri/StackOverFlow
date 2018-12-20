@@ -39,9 +39,11 @@
         <activity
             android:name="com.stackflow.app.view.activities.HomeActivity"
             android:label="@string/trending">
-
         </activity>
+
         <activity android:name=".view.activities.ProfileActivity" />
+        <activity android:name=".view.activities.InterestActivity"
+            android:label="Select Interest"/>
 
     </application>
 

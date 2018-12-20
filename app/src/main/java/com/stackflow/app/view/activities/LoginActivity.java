@@ -30,8 +30,8 @@ public class LoginActivity extends BaseActivity {
             String redirect_uri = uri.toString();
             String access_token = redirect_uri.substring(redirect_uri.indexOf("=") + 1);
             SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_TOKEN, access_token);
-            gotoProfileActivity();
             cancelProgressDialog();
+            gotoInterestActivity();
 
         } else if (!TextUtils.isEmpty(SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_TOKEN))) {
             gotoHomeActivity();
@@ -43,7 +43,13 @@ public class LoginActivity extends BaseActivity {
             showProgressDialog(this);
 
             Uri.Builder builder = new Uri.Builder();
-            builder.scheme("https").authority("stackoverflow.com").appendPath("oauth").appendPath("dialog").appendQueryParameter(Constants.QueryParam.CLIENT_ID, BuildConfig.CLIENT_ID).appendQueryParameter(Constants.QueryParam.SCOPE, "no_expiry").appendQueryParameter(Constants.QueryParam.REDIRECT_URI, "https://stackexchange.com/oauth/login_success");
+            builder.scheme("https")
+                    .authority("stackoverflow.com")
+                    .appendPath("oauth")
+                    .appendPath("dialog")
+                    .appendQueryParameter(Constants.QueryParam.CLIENT_ID, BuildConfig.CLIENT_ID)
+                    .appendQueryParameter(Constants.QueryParam.SCOPE, "no_expiry")
+                    .appendQueryParameter(Constants.QueryParam.REDIRECT_URI, "https://stackexchange.com/oauth/login_success");
 
             String authUrl = builder.build().toString();
 
@@ -54,8 +60,8 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    private void gotoProfileActivity() {
-        startActivity(new Intent(this, ProfileActivity.class));
+    private void gotoInterestActivity() {
+        startActivity(new Intent(this, InterestActivity.class));
         finish();
     }
 

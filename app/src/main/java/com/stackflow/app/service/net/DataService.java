@@ -1,5 +1,6 @@
 package com.stackflow.app.service.net;
 
+import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.service.model.ResponseList;
 import com.stackflow.app.service.model.User;
@@ -11,10 +12,14 @@ import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
 public interface DataService {
+
     @GET("questions")
     Call<ResponseList<Question>> trendingQuestion(@QueryMap Map<String,String> options);
 
     @GET("me")
     Call<ResponseList<User>> getUserInfo(@QueryMap Map<String, String> options);
+
+    @GET("tags")
+    Call<ResponseList<PopularTag>> getPopularTag(@QueryMap Map<String, String> options);
 
 }

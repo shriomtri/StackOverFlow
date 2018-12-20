@@ -3,6 +3,7 @@ package com.stackflow.app.service.net;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.service.model.ResponseList;
 import com.stackflow.app.service.model.User;
@@ -62,6 +63,25 @@ public class DataRepository {
                 data.setValue(null);
             }
         });
+        return data;
+    }
+
+    public LiveData<ResponseList<PopularTag>> getPopularTag(Map<String, String> map){
+
+        MutableLiveData<ResponseList<PopularTag>> data = new MutableLiveData<>();
+        Call<ResponseList<PopularTag>> call = dataService.getPopularTag(map);
+        call.enqueue(new Callback<ResponseList<PopularTag>>() {
+            @Override
+            public void onResponse(Call<ResponseList<PopularTag>> call, Response<ResponseList<PopularTag>> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseList<PopularTag>> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+
         return data;
     }
 
