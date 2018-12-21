@@ -1,11 +1,10 @@
 package com.stackflow.app.service.database;
 
-import com.stackflow.app.service.model.User;
+import com.stackflow.app.service.database.TypeConverter.StringArrayConvertor;
 import com.stackflow.app.service.model.UserInterest;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
-import androidx.room.Entity;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
