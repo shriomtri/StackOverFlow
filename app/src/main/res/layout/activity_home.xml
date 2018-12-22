@@ -7,22 +7,8 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <!--Toolbar-->
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-        </FrameLayout>
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
         <!--HomeActivity content-->
         <include
@@ -44,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:weightSum="4">
 
                 <LinearLayout
@@ -69,6 +56,7 @@
                         android:gravity="center"
                         android:padding="@dimen/padding_small"
                         android:text="java"
+                        android:onClick="interestClicked"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/text_size_small" />
 
@@ -79,6 +67,7 @@
                         android:gravity="center"
                         android:padding="@dimen/padding_small"
                         android:text="python"
+                        android:onClick="interestClicked"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/text_size_small" />
 
@@ -89,6 +78,7 @@
                         android:gravity="center"
                         android:padding="@dimen/padding_small"
                         android:text="javascript"
+                        android:onClick="interestClicked"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/text_size_small" />
 

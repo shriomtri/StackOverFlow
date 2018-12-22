@@ -47,7 +47,7 @@ public class HomeActivity extends BaseActivity {
 
     private void setupActionBar() {
 
-        setSupportActionBar(binding.toolbar);
+        setSupportActionBar(binding.homeView.toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -62,7 +62,12 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setupNavigation() {
-
+        viewModel.getUserInterest().observe(this, userInterests -> {
+            binding.interestOne.setText(userInterests.get(0).getUserInterest());
+            binding.interestTwo.setText(userInterests.get(1).getUserInterest());
+            binding.interestThree.setText(userInterests.get(2).getUserInterest());
+            binding.interestFour.setText(userInterests.get(3).getUserInterest());
+        });
     }
 
     private void getTrendingQuestions(String tag) {
@@ -86,12 +91,6 @@ public class HomeActivity extends BaseActivity {
                 List<Question> questionList = questionResponseList.getItems();
                 titleAdapter.swapData(questionList);
             }
-        });
-
-        //testing purpose
-        viewModel.getUserInterest().observe(this, interests -> {
-            Log.d("mark1", interests.get(0).getUserInterest() + " " + interests.get(1).getUserInterest());
-            Log.d("mark1", "Size " + String.valueOf(interests.size()));
         });
 
     }
@@ -144,6 +143,6 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
+        closeDrawers();
     }
 }
