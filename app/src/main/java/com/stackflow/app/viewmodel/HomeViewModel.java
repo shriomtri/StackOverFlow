@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.stackflow.app.service.database.DatabaseCreator;
 import com.stackflow.app.service.database.LocalDataRepository;
+import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.service.model.ResponseList;
 import com.stackflow.app.service.model.UserInterest;
@@ -32,6 +33,12 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<List<UserInterest>> getUserInterest(){
         return localDataRepository.getUserInterest();
+    }
+
+    public LiveData<ResponseList<PopularTag>> getPopularTag(Map<String, String> map) {
+        MutableLiveData<ResponseList<PopularTag>> data = new MutableLiveData<>();
+        dataRepository.getPopularTag(map).observeForever(data::setValue);
+        return data;
     }
 
 }

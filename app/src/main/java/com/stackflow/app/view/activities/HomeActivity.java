@@ -10,26 +10,37 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.stackflow.app.R;
+import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
+import com.stackflow.app.service.model.ResponseList;
 import com.stackflow.app.util.Constants;
 import com.stackflow.app.util.SharedPrefUtil;
 import com.stackflow.app.view.adapters.QuestionTitleAdapter;
+import com.stackflow.app.view.adapters.TagAdapter;
 import com.stackflow.app.viewmodel.HomeViewModel;
 import com.stackflow.app.databinding.ActivityHomeBinding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity implements TagAdapter.TagClickListener {
 
     ActivityHomeBinding binding;
+
     private HomeViewModel viewModel;
     private QuestionTitleAdapter titleAdapter;
+    private TagAdapter tagAdapter;
+    private TextView interestTv;
+
+    private String currentInterest = null;
+    private String currentTag = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +52,6 @@ public class HomeActivity extends BaseActivity {
         setupHomeView();
         setupNavigation();
 
-        getTrendingQuestions("android");
 
     }
 
@@ -62,16 +72,58 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setupNavigation() {
+
         viewModel.getUserInterest().observe(this, userInterests -> {
+
+            currentInterest = userInterests.get(0).getUserInterest();
+            currentTag = userInterests.get(0).getUserInterest();
+
             binding.interestOne.setText(userInterests.get(0).getUserInterest());
             binding.interestTwo.setText(userInterests.get(1).getUserInterest());
             binding.interestThree.setText(userInterests.get(2).getUserInterest());
             binding.interestFour.setText(userInterests.get(3).getUserInterest());
+
+            getRelatedTags(currentInterest);
         });
+
+        binding.interestTagList.setLayoutManager(new LinearLayoutManager(this));
+        tagAdapter = new TagAdapter(this);
+        binding.interestTagList.setAdapter(tagAdapter);
+
+    }
+
+
+    public void interestClicked(View view) {
+
+        if(view instanceof TextView) {
+            interestTv = (TextView) view;
+            currentInterest = interestTv.getText().toString().toLowerCase();
+            getRelatedTags(currentInterest);
+        }
+    }
+
+    private void getRelatedTags(String interest) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put(Constants.QueryParam.PAGE, "1");
+        map.put(Constants.QueryParam.PAGE_SIZE, "10");
+        map.put(Constants.QueryParam.ORDER, "desc");
+        map.put(Constants.QueryParam.SORT, "popular");
+        map.put(Constants.QueryParam.INNAME, interest);
+        map.put(Constants.QueryParam.SITE, "stackoverflow");
+        map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+
+        viewModel.getPopularTag(map).observe(this, popularTagResponseList -> {
+            List<PopularTag> popularTags = popularTagResponseList.getItems();
+            tagAdapter.swapData(popularTags);
+            getTrendingQuestions(popularTags.get(0).getName());
+        });
+
     }
 
     private void getTrendingQuestions(String tag) {
 
+        //TODO whenever user change the workspace, show shimmer effect instead progressDialog
         showProgressDialog(this);
 
         Map<String, String> map = new HashMap<>();
@@ -95,24 +147,6 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-
-    public void interestClicked(View view) {
-        switch (view.getId()) {
-            case R.id.interest_one:
-                closeDrawers();
-                break;
-            case R.id.interest_two:
-                closeDrawers();
-                break;
-            case R.id.interest_three:
-                closeDrawers();
-                break;
-            case R.id.interest_four:
-                closeDrawers();
-                break;
-
-        }
-    }
 
     private void closeDrawers() {
         if(binding.drawerLayout.isDrawerOpen(binding.navView)){
@@ -143,6 +177,12 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        closeDrawers();
+    }
+
+    @Override
+    public void tagClicked(String tag) {
+        getTrendingQuestions(tag);
         closeDrawers();
     }
 }

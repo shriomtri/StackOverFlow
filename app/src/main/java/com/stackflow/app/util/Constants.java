@@ -15,6 +15,7 @@ public class Constants {
         String REDIRECT_URI = "redirect_uri";
         String CLIENT_ID = "client_id";
         String FILTER = "filter";
+        String INNAME = "inname";
     }
 
 }
