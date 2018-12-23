@@ -2,12 +2,10 @@ package com.stackflow.app.view.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.core.view.GravityCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.stackflow.app.R;
 import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
-import com.stackflow.app.service.model.ResponseList;
 import com.stackflow.app.util.Constants;
 import com.stackflow.app.util.SharedPrefUtil;
 import com.stackflow.app.view.adapters.QuestionTitleAdapter;
@@ -25,7 +22,6 @@ import com.stackflow.app.view.adapters.TagAdapter;
 import com.stackflow.app.viewmodel.HomeViewModel;
 import com.stackflow.app.databinding.ActivityHomeBinding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,17 +74,17 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
             currentInterest = userInterests.get(0).getUserInterest();
             currentTag = userInterests.get(0).getUserInterest();
 
-            binding.interestOne.setText(userInterests.get(0).getUserInterest());
-            binding.interestTwo.setText(userInterests.get(1).getUserInterest());
-            binding.interestThree.setText(userInterests.get(2).getUserInterest());
-            binding.interestFour.setText(userInterests.get(3).getUserInterest());
+            binding.contentNav.interestOne.setText(userInterests.get(0).getUserInterest());
+            binding.contentNav.interestTwo.setText(userInterests.get(1).getUserInterest());
+            binding.contentNav.interestThree.setText(userInterests.get(2).getUserInterest());
+            binding.contentNav.interestFour.setText(userInterests.get(3).getUserInterest());
 
             getRelatedTags(currentInterest);
         });
 
-        binding.interestTagList.setLayoutManager(new LinearLayoutManager(this));
+        binding.contentNav.interestTagList.setLayoutManager(new LinearLayoutManager(this));
         tagAdapter = new TagAdapter(this);
-        binding.interestTagList.setAdapter(tagAdapter);
+        binding.contentNav.interestTagList.setAdapter(tagAdapter);
 
     }
 

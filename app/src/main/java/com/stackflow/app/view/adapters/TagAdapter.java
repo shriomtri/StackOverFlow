@@ -36,7 +36,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         String tagName = popularTagList.get(position).getName();
-        holder.tag.setText(tagName);
+        holder.tag.setText(String.format("#%s", tagName));
         holder.tag.setOnClickListener(v -> {
             tagClickListener.tagClicked(tagName);
         });
