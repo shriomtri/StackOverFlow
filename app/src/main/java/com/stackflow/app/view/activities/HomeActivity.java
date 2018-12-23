@@ -33,7 +33,6 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
     private HomeViewModel viewModel;
     private QuestionTitleAdapter titleAdapter;
     private TagAdapter tagAdapter;
-    private TextView interestTv;
 
     private String currentInterest = null;
     private String currentTag = null;
@@ -92,13 +91,16 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
     public void interestClicked(View view) {
 
         if(view instanceof TextView) {
-            interestTv = (TextView) view;
+            TextView interestTv = (TextView) view;
             currentInterest = interestTv.getText().toString().toLowerCase();
             getRelatedTags(currentInterest);
         }
     }
 
     private void getRelatedTags(String interest) {
+
+        binding.contentNav.tagProgressbar.setVisibility(View.VISIBLE);
+        binding.contentNav.interestTagList.setVisibility(View.INVISIBLE);
 
         Map<String, String> map = new HashMap<>();
         map.put(Constants.QueryParam.PAGE, "1");
@@ -110,9 +112,17 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
 
         viewModel.getPopularTag(map).observe(this, popularTagResponseList -> {
-            List<PopularTag> popularTags = popularTagResponseList.getItems();
-            tagAdapter.swapData(popularTags);
-            getTrendingQuestions(popularTags.get(0).getName());
+            if(popularTagResponseList != null && popularTagResponseList.getItems().size() >0) {
+
+                binding.contentNav.tagProgressbar.setVisibility(View.GONE);
+                binding.contentNav.interestTagList.setVisibility(View.VISIBLE);
+
+                List<PopularTag> popularTags = popularTagResponseList.getItems();
+                tagAdapter.swapData(popularTags);
+                getTrendingQuestions(popularTags.get(0).getName());
+            }else {
+                showToastMessage("getRelatedTags issue occurred");
+            }
         });
 
     }
@@ -178,7 +188,8 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
     @Override
     public void tagClicked(String tag) {
-        getTrendingQuestions(tag);
+        currentTag = tag;
+        getTrendingQuestions(currentTag);
         closeDrawers();
     }
 }

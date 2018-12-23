@@ -17,9 +17,9 @@
                 android:id="@+id/interest_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
                 android:text="android"
-                android:onClick="interestClicked"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
                 android:text="java"
-                android:onClick="interestClicked"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -39,9 +39,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
                 android:text="python"
-                android:onClick="interestClicked"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -50,19 +50,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
                 android:text="javascript"
-                android:onClick="interestClicked"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/interest_tag_list"
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4" />
+            android:layout_weight="4">
+
+            <ProgressBar
+                android:id="@+id/tag_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/interest_tag_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
     </LinearLayout>
 
