@@ -45,9 +45,14 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
         setupActionBar();
         setupHomeView();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         setupNavigation();
-
-
     }
 
     private void setupActionBar() {

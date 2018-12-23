@@ -17,13 +17,13 @@ public interface UserInterestDao {
     @Query("SELECT * FROM UserInterest")
     LiveData<List<UserInterest>> getUserInterest();
 
-    @Query("SELECT interestTags FROM UserInterest WHERE userInterest = :userInterest")
-    LiveData<String> getInterestTag(String userInterest);
-
     @Insert
-    void insertUserInterests(List<UserInterest> interests);
+    void setUserInterests(List<UserInterest> interests);
 
-    @Update
-    void updateUserInterest(UserInterest userInterest);
+    @Query("SELECT interestTags FROM UserInterest WHERE userInterest = :userInterest")
+    LiveData<List<String>> getInterestTag(String userInterest);
+
+    @Query("UPDATE UserInterest SET interestTags = :tags WHERE userInterest = :userInterest")
+    void setInterestTags(String userInterest, List<String> tags);
 
 }

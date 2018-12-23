@@ -98,7 +98,7 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         //Do submit work here
         if(interestCount == 4){
             List<String> interestList = interestAdapter.selected();
-            viewModel.insertUserInterest(interestList);
+            viewModel.setUserInterest(interestList);
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();

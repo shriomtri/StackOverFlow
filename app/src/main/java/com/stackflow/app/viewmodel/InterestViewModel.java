@@ -30,14 +30,14 @@ public class InterestViewModel extends ViewModel {
         return data;
     }
 
-    public void insertUserInterest(List<String> interest) {
+    public void setUserInterest(List<String> interest) {
 
         List<UserInterest> userInterestList = new ArrayList<>(4);
         for (int i = 0, size = interest.size(); i < size; i++) {
             userInterestList.add(new UserInterest(interest.get(i), ""));
         }
 
-        localDataRepository.insertUserInterests(userInterestList);
+        localDataRepository.setUserInterests(userInterestList);
     }
 
 }
