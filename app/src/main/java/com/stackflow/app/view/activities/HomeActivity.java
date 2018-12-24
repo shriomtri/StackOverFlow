@@ -72,6 +72,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         pagerAdapter.addFragment(QuestionFragment.instance(2),"HOT");
         pagerAdapter.addFragment(QuestionFragment.instance(3),"WEEK");
         binding.homeView.pagerContainer.questionPager.setAdapter(pagerAdapter);
+        binding.homeView.pagerContainer.questionPager.setOffscreenPageLimit(2);
         binding.homeView.tabLayout.setupWithViewPager(binding.homeView.pagerContainer.questionPager);
     }
 
