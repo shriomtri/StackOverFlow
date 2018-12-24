@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.stackflow.app.R;
 import com.stackflow.app.service.model.Question;
+import com.stackflow.app.view.fragments.QuestionFragment;
 
 import java.util.List;
 
@@ -17,15 +18,23 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
 
     private Context context;
     private List<Question> questionList;
+    private QCallback qCallback;
+
 
     public QuestionTitleAdapter(Context context) {
+        this.qCallback = (QCallback) context;
+        this.context = context;
+    }
+
+    public QuestionTitleAdapter(QuestionFragment questionFragment, Context context) {
+        this.qCallback = (QCallback) questionFragment;
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.title_list_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.question_list_item, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -55,5 +64,9 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
 
         }
 
+    }
+
+    public interface QCallback {
+        void questioniClicked(Question question);
     }
 }

@@ -19,10 +19,19 @@ public class HomeViewModel extends ViewModel {
 
     private final DataRepository dataRepository;
     private final LocalDataRepository localDataRepository;
+    private final MutableLiveData<String> selectedTag = new MutableLiveData<>();
 
     public HomeViewModel() {
         dataRepository = DataRepository.instance();
         localDataRepository = LocalDataRepository.instance();
+    }
+
+    public void setTag(String tag){
+        selectedTag.setValue(tag);
+    }
+
+    public LiveData<String> getSelectedTag(){
+        return selectedTag;
     }
 
     public LiveData<ResponseList<Question>> trendingQuestions(Map<String,String> map) {

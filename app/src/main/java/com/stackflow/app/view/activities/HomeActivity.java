@@ -17,8 +17,10 @@ import com.stackflow.app.service.model.PopularTag;
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.util.Constants;
 import com.stackflow.app.util.SharedPrefUtil;
+import com.stackflow.app.view.adapters.QuestionPagerAdapter;
 import com.stackflow.app.view.adapters.QuestionTitleAdapter;
 import com.stackflow.app.view.adapters.TagAdapter;
+import com.stackflow.app.view.fragments.QuestionFragment;
 import com.stackflow.app.viewmodel.HomeViewModel;
 import com.stackflow.app.databinding.ActivityHomeBinding;
 
@@ -31,7 +33,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
     ActivityHomeBinding binding;
 
     private HomeViewModel viewModel;
-    private QuestionTitleAdapter titleAdapter;
+    private QuestionPagerAdapter pagerAdapter;
     private TagAdapter tagAdapter;
 
     private String currentInterest = null;
@@ -42,17 +44,16 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-
-        setupActionBar();
-        setupHomeView();
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        setupActionBar();
         setupNavigation();
+        setupHomeView();
+
     }
 
     private void setupActionBar() {
@@ -65,10 +66,13 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
     }
 
     private void setupHomeView() {
-        binding.homeView.titleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        titleAdapter = new QuestionTitleAdapter(this);
-        binding.homeView.titleRecyclerView.setAdapter(titleAdapter);
 
+        pagerAdapter = new QuestionPagerAdapter(getSupportFragmentManager(),this);
+        pagerAdapter.addFragment(QuestionFragment.instance(1),"YOUR #");
+        pagerAdapter.addFragment(QuestionFragment.instance(2),"HOT");
+        pagerAdapter.addFragment(QuestionFragment.instance(3),"WEEK");
+        binding.homeView.pagerContainer.questionPager.setAdapter(pagerAdapter);
+        binding.homeView.tabLayout.setupWithViewPager(binding.homeView.pagerContainer.questionPager);
     }
 
     private void setupNavigation() {
@@ -124,7 +128,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
                 List<PopularTag> popularTags = popularTagResponseList.getItems();
                 tagAdapter.swapData(popularTags);
-                getTrendingQuestions(popularTags.get(0).getName());
+                viewModel.setTag(popularTags.get(0).getName());
             }else {
                 showToastMessage("getRelatedTags issue occurred");
             }
@@ -132,31 +136,6 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
     }
 
-    private void getTrendingQuestions(String tag) {
-
-        //TODO whenever user change the workspace, show shimmer effect instead progressDialog
-        showProgressDialog(this);
-
-        Map<String, String> map = new HashMap<>();
-        map.put(Constants.QueryParam.PAGE, "1");
-        map.put(Constants.QueryParam.PAGE_SIZE, "10");
-        map.put(Constants.QueryParam.ORDER, "desc");
-        map.put(Constants.QueryParam.SORT, "activity");
-        map.put(Constants.QueryParam.TAGGED, tag);
-        map.put(Constants.QueryParam.SITE, "stackoverflow");
-        map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
-
-        viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
-
-            cancelProgressDialog();
-
-            if (questionResponseList != null && questionResponseList.getItems() != null) {
-                List<Question> questionList = questionResponseList.getItems();
-                titleAdapter.swapData(questionList);
-            }
-        });
-
-    }
 
 
     private void closeDrawers() {
@@ -194,7 +173,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
     @Override
     public void tagClicked(String tag) {
         currentTag = tag;
-        getTrendingQuestions(currentTag);
+        viewModel.setTag(currentTag);
         closeDrawers();
     }
 }
