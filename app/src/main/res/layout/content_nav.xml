@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/nav_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/interest_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="interestClicked"
+                android:padding="@dimen/padding_small"
+                android:text="android"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/interest_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="interestClicked"
+                android:padding="@dimen/padding_small"
+                android:text="java"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/interest_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="interestClicked"
+                android:padding="@dimen/padding_small"
+                android:text="python"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/interest_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="interestClicked"
+                android:padding="@dimen/padding_small"
+                android:text="javascript"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <ProgressBar
+                android:id="@+id/tag_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/interest_tag_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

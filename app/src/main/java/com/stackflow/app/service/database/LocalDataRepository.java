@@ -27,13 +27,13 @@ public class LocalDataRepository {
         return localDataRepository;
     }
 
-    public void insertUserInterests(List<UserInterest> userInterests){
+    public void setUserInterests(List<UserInterest> userInterests){
 
         final HandlerThread mHandlerThread = new HandlerThread("Handler");
         mHandlerThread.start();
         final Handler handler = new Handler(mHandlerThread.getLooper());
         final Runnable runnable = () -> {
-            appDatabase.getUserInterestDao().insertUserInterests(userInterests);
+            appDatabase.getUserInterestDao().setUserInterests(userInterests);
         };
         handler.post(runnable);
 

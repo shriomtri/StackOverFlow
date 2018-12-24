@@ -1,4 +1,4 @@
-package com.stackflow.app.service.database;
+package com.stackflow.app.service.database.TypeConverter;
 
 import android.util.Log;
 
