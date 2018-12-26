@@ -43,7 +43,8 @@
 
         <activity android:name=".view.activities.ProfileActivity" />
         <activity android:name=".view.activities.InterestActivity"
-            android:label="Select Interest"/>
+            android:label="Select Interest"
+            android:screenOrientation="portrait"/>
 
     </application>
 

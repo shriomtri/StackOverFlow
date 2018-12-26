@@ -8,6 +8,11 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selected_interest_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/interest_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -17,9 +22,10 @@
             android:id="@+id/submit_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:padding="@dimen/padding_small">
+            android:padding="@dimen/padding_small"
+            android:onClick="submit">
 
             <TextView
                 android:layout_width="wrap_content"

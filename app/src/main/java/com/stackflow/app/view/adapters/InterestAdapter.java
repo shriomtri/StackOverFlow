@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.stackflow.app.R;
 import com.stackflow.app.service.model.PopularTag;
+import com.stackflow.app.service.model.SelectedInterest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +22,12 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
     private Context context;
     private List<PopularTag> tagList;
-    private List<String> selected = new ArrayList<>(4);
     private InterestClickListener interestClickListener;
-    private StringBuilder builder = new StringBuilder();
-
-    private int interestCount = 0;
 
 
-    public InterestAdapter(Context context, List<PopularTag> tagList) {
+    public InterestAdapter(Context context) {
         this.context = context;
-        this.tagList = tagList;
+        this.tagList = new ArrayList<>();
         interestClickListener = (InterestClickListener) context;
     }
 
@@ -46,26 +43,11 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
         PopularTag popularTag = tagList.get(position);
         String interestName = String.valueOf(popularTag.getName().charAt(0)).toUpperCase() + popularTag.getName().substring(1);
-        holder.interestName.setText(interestName);
-        holder.interestCB.setChecked(false);
-        holder.itemView.setOnClickListener(v -> {
-            if(holder.interestCB.isChecked()){
-                //remove from list
-                interestCount--;
-                selected.remove(popularTag.getName());
-                holder.interestCB.setChecked(false);
-                interestClickListener.tagSelected(false);
-            }else{
-                //add to list
-                if(interestCount < 4) {
-                    interestCount++;
-                    selected.add(popularTag.getName());
-                    holder.interestCB.setChecked(true);
-                    interestClickListener.tagSelected(true);
-                }
-            }
-        });
 
+        holder.interestName.setText(interestName);
+        holder.itemView.setOnClickListener(v -> {
+            interestClickListener.tagSelected(interestName, position);
+        });
     }
 
     @Override
@@ -73,30 +55,47 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
         return tagList == null ? 0 : tagList.size();
     }
 
+    //swap the data
     public void swapData(List<PopularTag> items) {
         this.tagList = items;
         notifyDataSetChanged();
     }
 
-    public List<String> selected() {
-        return selected;
+    //remove selected interest
+    public void remove(SelectedInterest selectedInterests) {
+
+        tagList.remove(selectedInterests.getPosition());
+        notifyItemRemoved(selectedInterests.getPosition());
+        notifyItemRangeChanged(selectedInterests.getPosition(),tagList.size());
+    }
+
+    public void insert(SelectedInterest removedInterest) {
+
+        PopularTag popularTag = new PopularTag();
+        popularTag.setName(removedInterest.getTag());
+        popularTag.setCount(0L);
+        popularTag.setHasSynonyms(false);
+        popularTag.setModeratorOnly(false);
+        popularTag.setRequired(false);
+
+        tagList.add(removedInterest.getPosition(), popularTag);
+        notifyItemInserted(removedInterest.getPosition());
+        notifyItemRangeChanged(removedInterest.getPosition(),tagList.size());
     }
 
 
     class ViewModel extends RecyclerView.ViewHolder {
 
-        CheckBox interestCB;
         TextView interestName;
 
         ViewModel(@NonNull View itemView) {
             super(itemView);
-            interestCB = itemView.findViewById(R.id.select_interest);
             interestName = itemView.findViewById(R.id.interest_name);
         }
     }
 
-    public interface InterestClickListener{
-        void tagSelected(boolean isChecked);
+    public interface InterestClickListener {
+        void tagSelected(String tag, Integer position);
     }
 
 }

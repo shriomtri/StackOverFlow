@@ -81,14 +81,14 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         viewModel.getUserInterest().observe(this, userInterests -> {
 
             currentInterest = userInterests.get(0).getUserInterest();
-            currentTag = userInterests.get(0).getUserInterest();
+            currentTag = userInterests.get(0).getUserInterest().toLowerCase();
 
             binding.contentNav.interestOne.setText(userInterests.get(0).getUserInterest());
             binding.contentNav.interestTwo.setText(userInterests.get(1).getUserInterest());
             binding.contentNav.interestThree.setText(userInterests.get(2).getUserInterest());
             binding.contentNav.interestFour.setText(userInterests.get(3).getUserInterest());
 
-            getRelatedTags(currentInterest);
+            getRelatedTags(currentInterest.toLowerCase());
         });
 
         binding.contentNav.interestTagList.setLayoutManager(new LinearLayoutManager(this));

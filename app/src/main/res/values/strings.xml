@@ -2,4 +2,5 @@
     <string name="app_name">StackOverflow</string>
     <string name="loading">Please wait …</string>
     <string name="trending">Trending</string>
+    <string name="deselect_interest">Deselect Interest</string>
 </resources>

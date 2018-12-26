@@ -21,6 +21,7 @@ public class HomeViewModel extends ViewModel {
     private final LocalDataRepository localDataRepository;
     private final MutableLiveData<String> selectedTag = new MutableLiveData<>();
 
+
     public HomeViewModel() {
         dataRepository = DataRepository.instance();
         localDataRepository = LocalDataRepository.instance();
