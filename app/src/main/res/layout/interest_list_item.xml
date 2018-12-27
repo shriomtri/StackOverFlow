@@ -12,10 +12,10 @@
         android:layout_margin="@dimen/padding_small"
         android:backgroundTint="@color/colorAccent"
         android:padding="8dp"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_small"
         android:textStyle="bold"
         android:textColor="@color/deep_oprange_A200"
-        tools:text="Android" />
+        tools:text="@string/android_interest_list" />
 
 
     <View

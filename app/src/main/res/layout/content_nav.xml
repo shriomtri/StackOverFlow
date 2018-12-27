@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
-                android:text="android"
+                android:text="@string/android_content"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
-                android:text="java"
+                android:text="@string/java_content"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
-                android:text="python"
+                android:text="@string/python_content"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
@@ -52,7 +52,7 @@
                 android:gravity="center"
                 android:onClick="interestClicked"
                 android:padding="@dimen/padding_small"
-                android:text="javascript"
+                android:text="@string/javascript_content"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_small" />
 
