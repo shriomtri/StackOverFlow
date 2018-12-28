@@ -34,7 +34,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
-                android:text="SUBMIT" />
+                android:text="@string/submit_interest" />
 
         </LinearLayout>
 
