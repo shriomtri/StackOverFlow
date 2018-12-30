@@ -7,4 +7,16 @@
     <string name="addl_text_login">Login to fully enjoy Stackoverflow\'s features</string>
     <string name="button_text_login">Login to Stack overflow</string>
     <string name="submit">SUBMIT</string>
+    <string name="submit_interest">SUBMIT</string>
+    <string name="login_login">Login</string>
+    <string name="loading_profile">Loading...</string>
+    <string name="submit_profile">Submit</string>
+    <string name="android_content">android</string>
+    <string name="java_content">java</string>
+    <string name="javascript_content">javascript</string>
+    <string name="android_studio_tag_list">android-studio</string>
+    <string name="python_content">python</string>
+    <string name="android_interest_list">Android</string>
+    <string name="java_selected_interest">Java</string>
+    <string name="title_text_question_list">This is my title of question</string>
 </resources>

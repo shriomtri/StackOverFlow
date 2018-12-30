@@ -15,7 +15,7 @@
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"
         android:textColor="@color/deep_oprange_A200"
-        tools:text="Android" />
+        tools:text="@string/android_interest_list" />
 
 
     <View
