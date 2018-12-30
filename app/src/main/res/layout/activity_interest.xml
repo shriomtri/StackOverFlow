@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:padding="@dimen/padding_small"
+            android:padding="@dimen/margin_padding_size_small"
             android:onClick="submit">
 
             <TextView
@@ -34,7 +34,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
-                android:text="SUBMIT" />
+                android:text="@string/submit" />
 
         </LinearLayout>
 

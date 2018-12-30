@@ -6,4 +6,5 @@
     <string name="stack_overflow_login">Stack overflow</string>
     <string name="addl_text_login">Login to fully enjoy Stackoverflow\'s features</string>
     <string name="button_text_login">Login to Stack overflow</string>
+    <string name="submit">SUBMIT</string>
 </resources>
