@@ -3,6 +3,10 @@
     <string name="loading">Please wait …</string>
     <string name="trending">Trending</string>
     <string name="deselect_interest">Deselect Interest</string>
+    <string name="stack_overflow_login">Stack overflow</string>
+    <string name="addl_text_login">Login to fully enjoy Stackoverflow\'s features</string>
+    <string name="button_text_login">Login to Stack overflow</string>
+    <string name="submit">SUBMIT</string>
     <string name="submit_interest">SUBMIT</string>
     <string name="login_login">Login</string>
     <string name="loading_profile">Loading...</string>

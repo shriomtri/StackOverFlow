@@ -8,11 +8,11 @@
         android:id="@+id/hashtag_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_large"
         android:text="@string/android_studio_tag_list"
-        android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"
         android:backgroundTint="@color/colorAccent"
-        android:padding="@dimen/padding_small"
+        android:padding="@dimen/margin_padding_size_small"
         android:textColor="@android:color/black"
         android:gravity="start"/>
 

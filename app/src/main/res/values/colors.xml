@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="deep_oprange_A200">#FF8E40</color>
+    <color name="light_dark">#FF242525</color>
+    <color name="login_text_color">	#FFFFFF</color>
 </resources>
