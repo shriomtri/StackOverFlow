@@ -64,11 +64,10 @@ public class QuestionFragment extends Fragment implements QuestionTitleAdapter.Q
         }
 
         if(listType == 1) {
-            viewModel.getSelectedTag().observe(this, this::getRelatedQuestions);
-        }else if (listType == 2){
-
-        }else{
-
+            viewModel.getSelectedTag().observe(this, s -> {
+                listTag = s;
+                getRelatedQuestions(listTag);
+            });
         }
 
         return binding.getRoot();
