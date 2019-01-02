@@ -1,8 +1,10 @@
 package com.stackflow.app.view.adapters;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,13 @@ import com.stackflow.app.R;
 import com.stackflow.app.service.model.Question;
 import com.stackflow.app.view.fragments.QuestionFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdapter.ViewHolder> {
 
     private Context context;
-    private List<Question> questionList;
+    private List<Question> questionList = new ArrayList<>();
     private QCallback qCallback;
 
 
@@ -40,7 +43,7 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-       viewHolder.questionTitle.setText(questionList.get(position).getTitle());
+        viewHolder.questionTitle.setText(questionList.get(position).getTitle());
     }
 
     @Override
@@ -51,6 +54,15 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
     public void swapData(List<Question> questionList) {
         this.questionList = questionList;
         notifyDataSetChanged();
+    }
+
+    public void setData(List<Question> questionList, boolean interestChanged) {
+        if (interestChanged) {
+            this.questionList.clear();
+        }
+        this.questionList.addAll(questionList);
+        notifyDataSetChanged();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
