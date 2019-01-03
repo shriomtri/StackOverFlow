@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.paginate.Paginate;
 import com.stackflow.app.R;
 import com.stackflow.app.databinding.FragmentQuestionTabBinding;
 import com.stackflow.app.service.model.Question;
@@ -21,17 +22,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-public class QuestionFragment extends Fragment implements QuestionTitleAdapter.QCallback{
+public class QuestionFragment extends Fragment implements LifecycleOwner, QuestionTitleAdapter.QCallback, Paginate.Callbacks{
 
     private FragmentQuestionTabBinding binding;
     private HomeViewModel viewModel;
     private QuestionTitleAdapter adapter;
+
     private int listType = 0;
-    private String listTag = null;
+    private String interestTag = null;
+    private boolean interestChanged = false;
+
+    private boolean hasMore = true;
+    private boolean isLoading = false;
+    private int page = 1;
 
     public QuestionFragment() {
         //empty constructor required
@@ -56,21 +64,19 @@ public class QuestionFragment extends Fragment implements QuestionTitleAdapter.Q
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_tab, container, false);
-        setRecyclerView();
 
         Bundle args = getArguments();
-        if(args != null){
-            listType = args.getInt("TYPE");
-        }
+        if(args != null){ listType = args.getInt("TYPE"); }
 
         if(listType == 1) {
-            viewModel.getSelectedTag().observe(this, this::getRelatedQuestions);
-        }else if (listType == 2){
-
-        }else{
-
+            viewModel.getSelectedTag().observe(this, s -> {
+                interestTag = s;
+                interestChanged = !interestChanged;
+                getRelatedQuestions(interestTag);
+            });
         }
 
+        setRecyclerView();
         return binding.getRoot();
     }
 
@@ -80,13 +86,20 @@ public class QuestionFragment extends Fragment implements QuestionTitleAdapter.Q
         adapter = new QuestionTitleAdapter(this,getContext());
         binding.questionRecyclerView.setAdapter(adapter);
 
+        Paginate.with(binding.questionRecyclerView, this)
+                .setLoadingTriggerThreshold(4)
+                .setLoadingListItemSpanSizeLookup(() -> 3)
+                .build();
+
     }
 
     private void getRelatedQuestions(String tag) {
         //(getContext()).showProgressDialog(this);
 
+        isLoading = true;
+
         Map<String, String> map = new HashMap<>();
-        map.put(Constants.QueryParam.PAGE, "1");
+        map.put(Constants.QueryParam.PAGE, String.valueOf(page));
         map.put(Constants.QueryParam.PAGE_SIZE, "10");
         map.put(Constants.QueryParam.ORDER, "desc");
         map.put(Constants.QueryParam.SORT, "activity");
@@ -100,13 +113,32 @@ public class QuestionFragment extends Fragment implements QuestionTitleAdapter.Q
 
             if (questionResponseList != null && questionResponseList.getItems() != null) {
                 List<Question> questionList = questionResponseList.getItems();
-                adapter.swapData(questionList);
+                isLoading = false;
+                hasMore = questionResponseList.getHasMore();
+                page++;
+                adapter.setData(questionList, interestChanged);
+                interestChanged = false;
             }
         });
     }
 
     @Override
     public void questioniClicked(Question question) {
+        //TODO perform action on question list item clicked
+    }
 
+    @Override
+    public void onLoadMore() {
+        getRelatedQuestions(interestTag);
+    }
+
+    @Override
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @Override
+    public boolean hasLoadedAllItems() {
+        return !hasMore;
     }
 }
