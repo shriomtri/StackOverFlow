@@ -5,70 +5,82 @@
         android:id="@+id/nav_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="4">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/light_dark"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/interest_one"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/seleted_tag_back"
                 android:onClick="interestClicked"
-                android:padding="@dimen/margin_padding_size_medium"
+                android:padding="@dimen/margin_padding_size_small"
+                android:tag="0"
                 android:text="@string/android_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_small" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/interest_two"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:onClick="interestClicked"
-                android:padding="@dimen/margin_padding_size_medium"
+                android:padding="@dimen/margin_padding_size_small"
+                android:tag="1"
                 android:text="@string/java_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_small" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/interest_three"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:onClick="interestClicked"
-                android:padding="@dimen/margin_padding_size_medium"
+                android:padding="@dimen/margin_padding_size_small"
+                android:tag="2"
                 android:text="@string/python_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_small" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/interest_four"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:onClick="interestClicked"
-                android:padding="@dimen/margin_padding_size_medium"
+                android:padding="@dimen/margin_padding_size_small"
+                android:tag="3"
                 android:text="@string/javascript_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_small" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium" />
 
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:layout_weight="4"
+            android:background="@color/deep_orange_A200">
 
             <ProgressBar
                 android:id="@+id/tag_progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/interest_tag_list"

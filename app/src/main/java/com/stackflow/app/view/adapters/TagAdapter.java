@@ -1,6 +1,7 @@
 package com.stackflow.app.view.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,9 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         String tagName = popularTagList.get(position).getName();
+        Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/JosefinSansSemiBold.ttf");
         holder.tag.setText(String.format("#%s", tagName));
+        holder.tag.setTypeface(custom_font);
         holder.tag.setOnClickListener(v -> {
             tagClickListener.tagClicked(tagName);
         });
