@@ -62,7 +62,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         }
     }
 
-    public interface TagClickListener{
+    public interface TagClickListener {
         void tagClicked(String tag);
     }
 }

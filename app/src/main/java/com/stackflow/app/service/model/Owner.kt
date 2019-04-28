@@ -7,24 +7,24 @@ class Owner {
 
     @SerializedName("reputation")
     @Expose
-    private var reputation: Int? = 0
+    var reputation: Int? = 0
     @SerializedName("user_id")
     @Expose
-    private var userId: Long? = 0
+    var userId: Long? = 0
     @SerializedName("user_type")
     @Expose
-    private var userType: String? = null
+    var userType: String? = null
     @SerializedName("profile_image")
     @Expose
-    private var profileImage: String? = null
+    var profileImage: String? = null
     @SerializedName("display_name")
     @Expose
-    private var displayName: String? = null
+    var displayName: String? = null
     @SerializedName("link")
     @Expose
-    private var link: String? = null
+    var link: String? = null
     @SerializedName("accept_rate")
     @Expose
-    private var acceptRate: Int? = 0
+    var acceptRate: Int? = 0
 
 }

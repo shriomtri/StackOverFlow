@@ -5,6 +5,7 @@ import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,7 +81,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
         viewModel.getUserInterest().observe(this, userInterests -> {
 
-            if(userInterests.size() == 4) {
+            if(!(userInterests.size() < 4)) {
 
                 currentInterest = userInterests.get(0).getUserInterest();
                 currentTag = userInterests.get(0).getUserInterest().toLowerCase();
@@ -92,15 +93,8 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
                 getRelatedTags(currentInterest.toLowerCase());
             }else{
-
-                currentInterest = "java";
-                currentTag = "java";
-
-                binding.contentNav.interestOne.setText("java");
-                binding.contentNav.interestTwo.setText("python");
-                binding.contentNav.interestThree.setText("javascript");
-                binding.contentNav.interestFour.setText("android");
-
+                startActivity(new Intent(this, InterestActivity.class));
+                finish();
             }
         });
 

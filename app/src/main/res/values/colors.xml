@@ -10,5 +10,6 @@
     <color name="light_dark">#FF242525</color>
     <color name="login_text_color">#FFFFFF</color>
     <color name="grey_800_50">#CC9e9e9e</color>
+    <color name="orange_100_50">#CCffccbc</color>
     <color name="white">#FFFFFF</color>
 </resources>
