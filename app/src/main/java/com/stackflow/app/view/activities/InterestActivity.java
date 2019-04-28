@@ -1,15 +1,18 @@
 package com.stackflow.app.view.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import com.stackflow.app.R;
+import com.stackflow.app.service.model.Question;
 import com.stackflow.app.service.model.SelectedInterest;
 import com.stackflow.app.util.AutofitRecyclerView;
 import com.stackflow.app.util.Constants;
 import com.stackflow.app.util.SharedPrefUtil;
 import com.stackflow.app.view.adapters.InterestAdapter;
+import com.stackflow.app.view.adapters.QuestionTitleAdapter;
 import com.stackflow.app.view.adapters.SelectedInterestAdapter;
 import com.stackflow.app.viewmodel.InterestViewModel;
 
@@ -19,6 +22,7 @@ import java.util.Map;
 import androidx.annotation.Nullable;
 
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -141,5 +145,4 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
     public void tagRemoved(SelectedInterest removedInterest, int position) {
         viewModel.removeSelected(removedInterest, position);
     }
-
 }

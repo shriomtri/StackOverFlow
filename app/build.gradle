@@ -80,6 +80,9 @@ dependencies {
     //circle imageveiw
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    //chrome custom tab
+    implementation 'com.android.support:customtabs:23.3.0'
+
     //database
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "androidx.room:room-runtime:$room_version"

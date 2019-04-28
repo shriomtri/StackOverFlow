@@ -59,6 +59,13 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
         viewHolder.updateTimeTV.setText(creationTime);
 
         viewHolder.questionTV.setText(question.getTitle());
+        viewHolder.questionTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qCallback.questioniClicked(question);
+            }
+        });
+
         viewHolder.scoreTV.setText(String.valueOf(question.getScore()));
         viewHolder.viewsTV.setText(String.valueOf(question.getViewCount()));
         viewHolder.answerTV.setText(String.valueOf(question.getAnswerCount()));
