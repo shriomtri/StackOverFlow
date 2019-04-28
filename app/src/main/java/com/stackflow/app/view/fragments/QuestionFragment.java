@@ -74,6 +74,10 @@ public class QuestionFragment extends Fragment implements LifecycleOwner, Questi
                 interestChanged = !interestChanged;
                 getRelatedQuestions(interestTag);
             });
+        }else if(listType == 2){
+            getHotQuestions();
+        }else if(listType == 3){
+            getWeekQuestions();
         }
 
         setRecyclerView();
@@ -107,6 +111,35 @@ public class QuestionFragment extends Fragment implements LifecycleOwner, Questi
         map.put(Constants.QueryParam.SITE, "stackoverflow");
         map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
 
+        getQuestionList(map);
+    }
+
+    private void getHotQuestions() {
+        Map<String, String> map = new HashMap<>();
+        map.put(Constants.QueryParam.PAGE, String.valueOf(page));
+        map.put(Constants.QueryParam.PAGE_SIZE, "10");
+        map.put(Constants.QueryParam.ORDER, "desc");
+        map.put(Constants.QueryParam.SORT, "hot");
+        map.put(Constants.QueryParam.SITE, "stackoverflow");
+        map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+
+        getQuestionList(map);
+
+    }
+
+    private void getWeekQuestions() {
+        Map<String, String> map = new HashMap<>();
+        map.put(Constants.QueryParam.PAGE, String.valueOf(page));
+        map.put(Constants.QueryParam.PAGE_SIZE, "10");
+        map.put(Constants.QueryParam.ORDER, "desc");
+        map.put(Constants.QueryParam.SORT, "week");
+        map.put(Constants.QueryParam.SITE, "stackoverflow");
+        map.put(Constants.QueryParam.KEY, SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_KEY));
+
+        getQuestionList(map);
+    }
+
+    private void getQuestionList(Map<String, String> map) {
         viewModel.trendingQuestions(map).observe(this, questionResponseList -> {
 
             //cancelProgressDialog();

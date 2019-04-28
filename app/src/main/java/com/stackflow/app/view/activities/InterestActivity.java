@@ -20,11 +20,14 @@ import androidx.annotation.Nullable;
 
 
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class InterestActivity extends BaseActivity implements InterestAdapter.InterestClickListener, SelectedInterestAdapter.RemoveClickListener {
 
     private InterestViewModel viewModel = null;
-    private AutofitRecyclerView seletedInterestList, interestList;
+    private RecyclerView seletedInterestList;
+    private AutofitRecyclerView interestList;
 
     private InterestAdapter interestAdapter = null;
     private SelectedInterestAdapter selectedAdapter = null;
@@ -69,8 +72,9 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         interestList = findViewById(R.id.interest_list);
         interestList.setAdapter(interestAdapter);
 
-        selectedAdapter = new SelectedInterestAdapter(this);
         seletedInterestList = findViewById(R.id.selected_interest_list);
+        seletedInterestList.setLayoutManager(new GridLayoutManager(this, 3));
+        selectedAdapter = new SelectedInterestAdapter(this);
         seletedInterestList.setAdapter(selectedAdapter);
 
     }

@@ -40,7 +40,7 @@ public class SelectedInterestAdapter extends RecyclerView.Adapter<SelectedIntere
 
         holder.selectedTV.setText(selectedList.get(position).getTag());
         holder.removeBtn.setOnClickListener(v -> {
-            removeClickListener.tagRemoved(selectedList.get(position),position);
+            removeClickListener.tagRemoved(selectedList.get(position), position);
         });
     }
 
@@ -66,7 +66,7 @@ public class SelectedInterestAdapter extends RecyclerView.Adapter<SelectedIntere
         }
     }
 
-    public interface RemoveClickListener{
+    public interface RemoveClickListener {
         void tagRemoved(SelectedInterest selectedInterest, int position);
     }
 }

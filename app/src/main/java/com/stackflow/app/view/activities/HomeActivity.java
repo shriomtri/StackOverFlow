@@ -80,6 +80,7 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         pagerAdapter.addFragment(QuestionFragment.instance(1), "YOUR #");
         pagerAdapter.addFragment(QuestionFragment.instance(2), "HOT");
         pagerAdapter.addFragment(QuestionFragment.instance(3), "WEEK");
+
         binding.homeView.pagerContainer.questionPager.setAdapter(pagerAdapter);
         binding.homeView.pagerContainer.questionPager.setOffscreenPageLimit(2);
         binding.homeView.tabLayout.setupWithViewPager(binding.homeView.pagerContainer.questionPager);
@@ -162,21 +163,6 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
         if (view instanceof TextView) {
             TextView interestTv = (TextView) view;
             currentInterest = interestTv.getText().toString().toLowerCase();
-//            int positionClicked = 0;
-//            switch (interestTv.getId()) {
-//                case R.id.interest_one:
-//                    positionClicked = 0;
-//                    break;
-//                case R.id.interest_two:
-//                    positionClicked = 1;
-//                    break;
-//                case R.id.interest_three:
-//                    positionClicked = 2;
-//                    break;
-//                case R.id.interest_four:
-//                    positionClicked = 3;
-//                    break;
-//            }
             updateTagBack(Integer.parseInt((String) interestTv.getTag()));
             getRelatedTags(currentInterest);
         }
@@ -247,8 +233,12 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
     @Override
     public void tagClicked(String tag) {
+        if (binding.homeView.pagerContainer.questionPager.getCurrentItem() != 0) {
+            binding.homeView.pagerContainer.questionPager.setCurrentItem(0, true);
+        }
         currentTag = tag;
         viewModel.setTag(currentTag);
         closeDrawers();
     }
 }
+
