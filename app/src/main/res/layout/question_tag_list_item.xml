@@ -13,6 +13,6 @@
         android:padding="@dimen/margin_padding_size_very_small"
         android:text="java"
         android:textColor="@color/deep_orange_A200"
-        android:textSize="@dimen/text_size_medium" />
+        android:textSize="@dimen/text_size_small" />
 
 </LinearLayout>

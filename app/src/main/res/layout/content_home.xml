@@ -18,8 +18,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/light_dark"
-                app:titleTextColor="@color/white"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:titleTextColor="@color/white" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
@@ -36,7 +37,8 @@
 
         <include
             android:id="@+id/pager_container"
-            layout="@layout/home_pager" />
+            layout="@layout/home_pager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

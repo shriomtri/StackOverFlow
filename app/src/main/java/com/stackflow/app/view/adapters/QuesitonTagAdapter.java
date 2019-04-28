@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class QuesitonTagAdapter extends RecyclerView.Adapter<QuesitonTagAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> tagList = new ArrayList<>();
+    private List<String> tagList;
 
     public QuesitonTagAdapter(Context context, List<String> tagList) {
         this.context = context;

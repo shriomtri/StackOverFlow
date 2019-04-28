@@ -20,6 +20,7 @@ import com.stackflow.app.service.model.Question;
 import com.stackflow.app.view.fragments.QuestionFragment;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdapter.ViewHolder> {
@@ -74,8 +75,10 @@ public class QuestionTitleAdapter extends RecyclerView.Adapter<QuestionTitleAdap
         viewHolder.questionTV.setTypeface(custom_font);
     }
 
-    private String getTime(Long creationDate) {
-        long seconds = creationDate / 1000;
+    private String getTime(Long seconds) {
+        long timeMilli = new Date().getTime();
+        long currentSecond = timeMilli/1000;
+        seconds = currentSecond - seconds;
         if (seconds > 59) {
             long minutes = seconds / 60;
             if (minutes > 59) {
