@@ -30,7 +30,6 @@ public class LoginActivity extends BaseActivity {
             String redirect_uri = uri.toString();
             String access_token = redirect_uri.substring(redirect_uri.indexOf("=") + 1);
             SharedPrefUtil.instance().set(SharedPrefUtil.ACCESS_TOKEN, access_token);
-            cancelProgressDialog();
             gotoInterestActivity();
 
         } else if (!TextUtils.isEmpty(SharedPrefUtil.instance().getString(SharedPrefUtil.ACCESS_TOKEN))) {
@@ -68,6 +67,12 @@ public class LoginActivity extends BaseActivity {
     private void gotoHomeActivity() {
         startActivity(new Intent(this, HomeActivity.class));
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cancelProgressDialog();
     }
 
     @Override

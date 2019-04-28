@@ -85,4 +85,12 @@ public class InterestViewModel extends ViewModel {
     public int getCount(){
         return count;
     }
+
+    public void clearAllSelection() {
+        if(selectedInterestList.size()>0){
+            for(SelectedInterest selectedInterest: selectedInterestList){
+                removeSelected(selectedInterest, selectedInterest.getPosition());
+            }
+        }
+    }
 }

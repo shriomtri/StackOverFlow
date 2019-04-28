@@ -80,15 +80,28 @@ public class HomeActivity extends BaseActivity implements TagAdapter.TagClickLis
 
         viewModel.getUserInterest().observe(this, userInterests -> {
 
-            currentInterest = userInterests.get(0).getUserInterest();
-            currentTag = userInterests.get(0).getUserInterest().toLowerCase();
+            if(userInterests.size() == 4) {
 
-            binding.contentNav.interestOne.setText(userInterests.get(0).getUserInterest());
-            binding.contentNav.interestTwo.setText(userInterests.get(1).getUserInterest());
-            binding.contentNav.interestThree.setText(userInterests.get(2).getUserInterest());
-            binding.contentNav.interestFour.setText(userInterests.get(3).getUserInterest());
+                currentInterest = userInterests.get(0).getUserInterest();
+                currentTag = userInterests.get(0).getUserInterest().toLowerCase();
 
-            getRelatedTags(currentInterest.toLowerCase());
+                binding.contentNav.interestOne.setText(userInterests.get(0).getUserInterest());
+                binding.contentNav.interestTwo.setText(userInterests.get(1).getUserInterest());
+                binding.contentNav.interestThree.setText(userInterests.get(2).getUserInterest());
+                binding.contentNav.interestFour.setText(userInterests.get(3).getUserInterest());
+
+                getRelatedTags(currentInterest.toLowerCase());
+            }else{
+
+                currentInterest = "java";
+                currentTag = "java";
+
+                binding.contentNav.interestOne.setText("java");
+                binding.contentNav.interestTwo.setText("python");
+                binding.contentNav.interestThree.setText("javascript");
+                binding.contentNav.interestFour.setText("android");
+
+            }
         });
 
         binding.contentNav.interestTagList.setLayoutManager(new LinearLayoutManager(this));

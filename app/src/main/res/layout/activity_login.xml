@@ -60,7 +60,7 @@
             android:layout_marginTop="@dimen/margin_padding_size_small"
             android:layout_marginEnd="@dimen/margin_padding_size_small"
             android:layout_marginBottom="@dimen/margin_padding_size_small"
-            android:background="@color/deep_oprange_A200"
+            android:background="@color/deep_orange_A200"
             android:padding="@dimen/margin_padding_size_medium"
             android:text="@string/button_text_login"
             android:textAllCaps="false"

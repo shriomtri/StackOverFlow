@@ -57,6 +57,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
     //swap the data
     public void swapData(List<PopularTag> items) {
+        this.tagList.clear();
         this.tagList = items;
         notifyDataSetChanged();
     }

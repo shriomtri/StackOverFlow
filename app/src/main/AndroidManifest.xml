@@ -16,6 +16,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name="com.stackflow.app.view.activities.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,7 @@
 
                 <data
                     android:host="stackexchange.com"
-                    android:pathPattern=".*"
+                    android:pathPattern="/oauth/login_success"
                     android:scheme="https" />
             </intent-filter>
 
@@ -42,6 +43,7 @@
         </activity>
 
         <activity android:name=".view.activities.ProfileActivity" />
+
         <activity android:name=".view.activities.InterestActivity"
             android:label="Select Interest"
             android:screenOrientation="portrait"/>

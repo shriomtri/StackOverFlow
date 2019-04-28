@@ -2,7 +2,7 @@
 <resources>
 
     <!--Margin and Padding with 8dp baseline-->
-    <dimen name="margin_padding_size_very_small">8dp</dimen>
+    <dimen name="margin_padding_size_very_small">4dp</dimen>
     <dimen name="margin_padding_size_small">8dp</dimen>
     <dimen name="margin_padding_size_medium">16dp</dimen>
     <dimen name="margin_padding_size_large">24dp</dimen>

@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.stackflow.app.R;
-import com.stackflow.app.databinding.ActivityInterestBinding;
 import com.stackflow.app.service.model.SelectedInterest;
+import com.stackflow.app.util.AutofitRecyclerView;
 import com.stackflow.app.util.Constants;
 import com.stackflow.app.util.SharedPrefUtil;
 import com.stackflow.app.view.adapters.InterestAdapter;
@@ -17,16 +17,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
-import androidx.lifecycle.Observer;
+
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class InterestActivity extends BaseActivity implements InterestAdapter.InterestClickListener, SelectedInterestAdapter.RemoveClickListener {
 
-    private ActivityInterestBinding binding = null;
     private InterestViewModel viewModel = null;
+    private AutofitRecyclerView seletedInterestList, interestList;
 
     private InterestAdapter interestAdapter = null;
     private SelectedInterestAdapter selectedAdapter = null;
@@ -36,7 +34,7 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_interest);
+        setContentView(R.layout.activity_interest);
         viewModel = ViewModelProviders.of(this).get(InterestViewModel.class);
         setUpList();
     }
@@ -45,6 +43,7 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
     protected void onStart() {
         super.onStart();
         getPopularInterest();
+        //clearAllSelection();
     }
 
     @Override
@@ -67,13 +66,12 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
     private void setUpList() {
 
         interestAdapter = new InterestAdapter(this);
-        binding.interestList.setAdapter(interestAdapter);
-        binding.interestList.setLayoutManager(new LinearLayoutManager(this));
+        interestList = findViewById(R.id.interest_list);
+        interestList.setAdapter(interestAdapter);
 
         selectedAdapter = new SelectedInterestAdapter(this);
-        binding.selectedInterestList.setAdapter(selectedAdapter);
-        binding.selectedInterestList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
+        seletedInterestList = findViewById(R.id.selected_interest_list);
+        seletedInterestList.setAdapter(selectedAdapter);
 
     }
 
@@ -81,7 +79,7 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         showProgressDialog(this);
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put(Constants.QueryParam.PAGE, "1");
-        queryMap.put(Constants.QueryParam.PAGE_SIZE, "20");
+        queryMap.put(Constants.QueryParam.PAGE_SIZE, "80");
         queryMap.put(Constants.QueryParam.ORDER, "desc");
         queryMap.put(Constants.QueryParam.SORT, "popular");
         queryMap.put(Constants.QueryParam.SITE, "stackoverflow");
@@ -97,10 +95,14 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         });
     }
 
+    private void clearAllSelection() {
+        viewModel.clearAllSelection();
+    }
+
     public void submit(View view) {
-        if(viewModel.getCount() < 4 ){
+        if (viewModel.getCount() < 4) {
             showToastMessage("Select at least 4 interest");
-        }else{
+        } else {
             viewModel.setUserInterest();
             startActivity(new Intent(this, HomeActivity.class));
             finish();

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">@color/light_dark</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="deep_oprange_A200">#FF8E40</color>
+    <color name="colorAccent">@color/deep_orange_A200</color>
+
+    <color name="deep_orange_900">#bf360c</color>
+    <color name="deep_orange_A100">#ff9e80</color>
+    <color name="deep_orange_A200">#FF8E40</color>
     <color name="light_dark">#FF242525</color>
-    <color name="login_text_color">	#FFFFFF</color>
+    <color name="login_text_color">#FFFFFF</color>
+    <color name="grey_800_50">#CC9e9e9e</color>
+    <color name="white">#FFFFFF</color>
 </resources>
