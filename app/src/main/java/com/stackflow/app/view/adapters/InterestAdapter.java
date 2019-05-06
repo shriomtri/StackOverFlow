@@ -1,6 +1,7 @@
 package com.stackflow.app.view.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
     private Context context;
     private List<PopularTag> tagList;
     private InterestClickListener interestClickListener;
+    private Typeface custom_font;
 
 
     public InterestAdapter(Context context) {
@@ -35,6 +37,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
     @Override
     public ViewModel onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.interest_list_item, parent, false);
+        custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/JosefinSansSemiBold.ttf");
         return new ViewModel(v);
     }
 
@@ -43,8 +46,8 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
         PopularTag popularTag = tagList.get(position);
         String interestName = String.valueOf(popularTag.getName().charAt(0)).toUpperCase() + popularTag.getName().substring(1);
-
         holder.interestName.setText(interestName);
+        holder.interestName.setTypeface(custom_font);
         holder.itemView.setOnClickListener(v -> {
             interestClickListener.tagSelected(interestName, position);
         });
@@ -67,7 +70,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
         tagList.remove(selectedInterests.getPosition());
         notifyItemRemoved(selectedInterests.getPosition());
-        notifyItemRangeChanged(selectedInterests.getPosition(),tagList.size());
+        notifyItemRangeChanged(selectedInterests.getPosition(), tagList.size());
     }
 
     public void insert(SelectedInterest removedInterest) {
@@ -81,7 +84,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewMo
 
         tagList.add(removedInterest.getPosition(), popularTag);
         notifyItemInserted(removedInterest.getPosition());
-        notifyItemRangeChanged(removedInterest.getPosition(),tagList.size());
+        notifyItemRangeChanged(removedInterest.getPosition(), tagList.size());
     }
 
 

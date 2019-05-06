@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/interest_gudieTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_padding_size_medium"

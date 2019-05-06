@@ -1,6 +1,7 @@
 package com.stackflow.app.view.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class SelectedInterestAdapter extends RecyclerView.Adapter<SelectedIntere
     private List<SelectedInterest> selectedList = new ArrayList<>();
     private Context context;
     private RemoveClickListener removeClickListener;
+    private Typeface custom_font;
 
     public SelectedInterestAdapter(Context context) {
         this.context = context;
@@ -32,6 +34,7 @@ public class SelectedInterestAdapter extends RecyclerView.Adapter<SelectedIntere
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.selected_interest_list_item, parent, false);
+        custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/JosefinSansSemiBold.ttf");
         return new ViewHolder(v);
     }
 
@@ -39,6 +42,8 @@ public class SelectedInterestAdapter extends RecyclerView.Adapter<SelectedIntere
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.selectedTV.setText(selectedList.get(position).getTag());
+        holder.selectedTV.setTypeface(custom_font);
+
         holder.removeBtn.setOnClickListener(v -> {
             removeClickListener.tagRemoved(selectedList.get(position), position);
         });

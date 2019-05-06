@@ -1,9 +1,12 @@
 package com.stackflow.app.view.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 
 import com.stackflow.app.R;
 import com.stackflow.app.service.model.Question;
@@ -37,13 +40,19 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
     private SelectedInterestAdapter selectedAdapter = null;
 
     private int interestCount = 0;
+    private Typeface custom_font;
+
+    private TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest);
         viewModel = ViewModelProviders.of(this).get(InterestViewModel.class);
+        custom_font = Typeface.createFromAsset(getAssets(), "fonts/JosefinSansSemiBold.ttf");
         setUpList();
+        textView = findViewById(R.id.interest_gudieTV);
+        textView.setTypeface(custom_font);
     }
 
     @Override
@@ -87,7 +96,7 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
         showProgressDialog(this);
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put(Constants.QueryParam.PAGE, "1");
-        queryMap.put(Constants.QueryParam.PAGE_SIZE, "80");
+        queryMap.put(Constants.QueryParam.PAGE_SIZE, "30");
         queryMap.put(Constants.QueryParam.ORDER, "desc");
         queryMap.put(Constants.QueryParam.SORT, "popular");
         queryMap.put(Constants.QueryParam.SITE, "stackoverflow");
@@ -112,8 +121,12 @@ public class InterestActivity extends BaseActivity implements InterestAdapter.In
             showToastMessage("Select at least 4 interest");
         } else {
             viewModel.setUserInterest();
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
+            showProgressDialog(this);
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(InterestActivity.this, HomeActivity.class));
+                cancelProgressDialog();
+                finish();
+            }, 3000);
         }
     }
 
